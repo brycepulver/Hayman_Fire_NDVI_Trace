@@ -39,6 +39,20 @@ full_long <- rbind(ndvi,ndmi,ndsi) %>%
 
 ## Your code here
 
+full_wide <- spread(full_long,key='data',value='value') %>%
+  filter_if(is.numeric,all_vars(!is.na(.))) %>%
+  mutate(month = month(DateTime), year = year(DateTime))
+
+summer_only <- filter(full_wide, month %in% c(6,7,8,9))
+head(summer_only)
+
+ggplot(full_wide,aes(x=ndvi,y=ndmi,color=site)) + 
+  geom_point()  
+  
+ggplot(summer_only,aes(x=ndvi,y=ndmi,color=site)) + 
+  geom_point() 
+ 
+
 ## End Code for Question 1 -----------
 
 

@@ -1,8 +1,10 @@
 ---
-title: "NDVI Trace in Hayman Fire"
-author: "Matthew Ross"
-date: "9/5/2019"
+title: "1_NDVI_Trace"
+author: "Bryce Pulver"
+date: "September 10, 2019"
 output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -15,14 +17,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Hayman Fire
 
-In 2002 there was a large fire in central Colorado. This analysis is meant
-to highlight how the fire altered vegetation in the area.
+in 2002 there was a large fire in central Colorado. This analysis is meant to high highlight how the fir  altered vegetation in the area
 
+###Data read
 
-### Data read
-
-First we have to read in the NDVI data which is structured to compare
-unburned vs burned sites in the Hayman region. 
+first we have to read in the ndvi data which is structured to compare 
 
 ```{r data-read}
 #Reading in the data. 
@@ -30,11 +29,9 @@ ndvi <- read_csv('data/hayman_ndvi.csv') %>%
   rename(burned=2,unburned=3) %>%
   filter(!is.na(burned),
          !is.na(unburned))
-
-
 ```
 
-### Tidying 
+### Tidying
 
 Next we clean the data a little
 ```{r tidying}
@@ -43,15 +40,12 @@ ndvi_long <- gather(ndvi,
                     key='site',
                     value='NDVI',
                     -DateTime)
-
 ```
 
 ### Plot of NDVI over time
 
-NDVI (greenness) after the fire dramatically decreased and stayed low for at least
-17 years. 
+NDVI greenes after the fire decreased and stayed low for atleast 17 years
 ```{r plot-all}
-
 # Plotting all the data
 ggplot(ndvi_long,aes(x=DateTime,y=NDVI,color=site)) +
   geom_point(shape=1) +
@@ -60,6 +54,7 @@ ggplot(ndvi_long,aes(x=DateTime,y=NDVI,color=site)) +
   scale_color_few() +
   theme(legend.position=c(0.3,0.3))
 
-
 ```
 
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
