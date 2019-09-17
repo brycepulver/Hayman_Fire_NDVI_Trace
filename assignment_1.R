@@ -78,7 +78,8 @@ SC_VG <- merge(snow_cover,veg_growth)
 ggplot(SC_VG,aes(x=mean_ndsi,y=mean_ndvi, color = site)) +
   geom_point()
 
-head(SC_VG)
+#there is not correlation or influece of snow cover to vegetation growth
+
 ## End code for question 2 -----------------
 
 
@@ -122,8 +123,9 @@ ggplot(ndvi_month_pre_post,aes(x=month,y=mean_ndvi,color=treatment)) +
   scale_color_few() + 
   theme(legend.position=c(0.6,0.2)) + 
   facet_wrap(~site)
+#the greenest month for burned plots is Aug. and unburned is Sep. This does not change in pre and post-burn environments
 
-view(ndvi_month_pre_post)
+
 ##### Question 5 ####
 #What month is the snowiest on average?
 
@@ -143,3 +145,4 @@ ggplot(ndsi_month_pre_post,aes(x=month,y=mean_ndsi,color=treatment)) +
   scale_color_few() + 
   theme(legend.position=c(0.6,0.2)) + 
   facet_wrap(~site)
+##The snowiest month on average is Jan.
